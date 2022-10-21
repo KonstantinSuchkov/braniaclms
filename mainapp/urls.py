@@ -11,5 +11,5 @@ urlpatterns = [
     path('docsite/', views.DocSiteView.as_view()),
     path('', views.IndexViewView.as_view()),
     path('login/', views.LoginView.as_view()),
-    path('new/', views.NewsView.as_view()),
+    path('news/', views.NewsView.as_view()),
 ]

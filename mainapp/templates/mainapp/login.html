@@ -19,7 +19,8 @@
 </head>
 
 <body>
-
+{% extends 'mainapp/base.html' %}
+{% block content %}
 
 
 
@@ -57,26 +58,4 @@
 </div>
 
 
-
-
-
-
-
-
-    <!-- JavaScript section -->
-    <!-- Bootstrap -->
-    <script src="/js/jquery-3.6.0.min.js"></script>
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-
-    <!-- ChartJs -->
-    <script src="/js/Chart.min.js"></script>
-
-    <!-- FontAwesome -->
-    <script src="/js/fontawesome.all.min.js"></script>
-
-
-
-</body>
-
-</html>
+{% endblock %}
