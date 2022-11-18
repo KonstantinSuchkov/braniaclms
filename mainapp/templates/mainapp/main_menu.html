@@ -32,8 +32,20 @@
                         </div>
                     </li>
                     <li class="nav-item {% if request.resolver_match.view_name == 'mainapp:mainapp.views.ContactsView' %}active{% endif %}">
-                        <a class="nav-link" href="/mainapp/contacts/">Контакты</a>
+                        <a class="nav-link" href="{% url 'mainapp:contacts' %}">Контакты</a>
                     </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item {% if request.resolver_match.view_name == 'mainapp:mainapp.views.ContactsView' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'authapp:edit' %}">{{ user.first_name|default:user.username }}</a>
+                    </li>
+                    <li class="nav-item {% if request.resolver_match.view_name == 'mainapp:mainapp.views.ContactsView' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'authapp:logout' %}">Выход</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item {% if request.resolver_match.view_name == 'mainapp:mainapp.views.ContactsView' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'authapp:login' %}">Вход</a>
+                    </li>
+                    {% endif %}
                 </ul>
                 <span><a href="#">🇷🇺</a> <i class="fas fa-grip-lines-vertical"></i> <a href="#">🇬🇧</a></span>
             </div>

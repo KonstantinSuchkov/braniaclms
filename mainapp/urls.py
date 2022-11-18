@@ -1,15 +1,16 @@
 from mainapp import views
-from django.urls import path
 from mainapp.apps import MainappConfig
+from django.urls import path, include
+
 
 app_name = MainappConfig.name
 
 
 urlpatterns = [
-    path('contacts/', views.ContactsView.as_view()),
-    path('courses/', views.CoursesListView.as_view()),
-    path('docsite/', views.DocSiteView.as_view()),
-    path('', views.IndexViewView.as_view()),
-    path('login/', views.LoginView.as_view()),
-    path('news/', views.NewsView.as_view()),
+    path('contacts/', views.ContactsView.as_view(), name='contacts'),
+    path('courses/', views.CoursesListView.as_view(), name='courses'),
+    path('docsite/', views.DocSiteView.as_view(), name='docsite'),
+    path('', views.IndexViewView.as_view(), name='index'),
+    path('login/', views.LoginView.as_view(), name='login'),
+    path('news/', views.NewsView.as_view(), name='news'),
 ]

@@ -2,6 +2,8 @@
 # Create your views here.
 from django.views.generic import TemplateView
 from mainapp.models import News
+from mainapp import models as mainapp_models
+
 
 
 class ContactsView(TemplateView):
