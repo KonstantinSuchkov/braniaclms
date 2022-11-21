@@ -19,11 +19,12 @@
 </head>
 <body>
 {% extends 'authapp/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
 <h2>Регистрация пользователя</h2>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
     <p>
         <button type="submit" class="btn btn-primary btn-block">Зарегистрироваться
         </button>
