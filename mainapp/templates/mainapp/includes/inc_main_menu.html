@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+
+    <!-- ChartJS -->
+    <link rel="stylesheet" href="/static/css/Chart.min.css">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="/static/css/fontawesome.all.min.css">
+
+    <title>Welcome to GeekLab!</title>
+</head>
+<body>
+
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'mainapp:index' %}">
+            <img src="{% static 'img/logo.png' %}" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li
+                        class="nav-item {% if request.resolver_match.view_name == 'mainapp:news' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'mainapp:news' %}">Новости</a>
+                </li>
+                <li
+                        class="nav-item {% if request.resolver_match.view_name == 'mainapp:courses' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'mainapp:courses' %}">Курсы</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddProfile"
+                       role="button" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        Профиль
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddProfile">
+                        <a class="dropdown-item"
+                           href="{% url 'authapp:edit' pk=request.user.pk %}">Редактировать
+                            профиль</a>
+                        <a class="dropdown-item" href="#">Мои курсы</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'admin:index' %}">Модерация</a>
+                        {% if user.is_superuser %}
+                        <a class="dropdown-item" href="{% url 'admin:index' %}"
+                           target="_black">Административный
+                            раздел</a>
+                        {% endif %}
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'authapp:logout' %}">Выход</a>
+                    </div>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'authapp:login' %}">Вход</a>
+                </li>
+                {% endif %}
+                <li
+                        class="nav-item {% if request.resolver_match.view_name == 'mainapp:contacts' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'mainapp:contacts' %}">Контакты</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'authapp:edit' user.pk %}">{{ user.first_name|default:user.username}}</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'authapp:logout' %}">Выход</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'authapp:login' %}">Вход</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <span><a href="#">󰐮</a> <i class="fas fa-grip-lines-vertical"></i> <a
+                    href="#">󰏅</a></span>
+        </div>
+    </div>
+</nav>

@@ -1,6 +1,6 @@
 <body>
 
-{% include 'mainapp/main_menu.html' %}
+{% include 'mainapp/includes/inc_main_menu.html' %}
 
 
 
@@ -87,6 +87,7 @@
 
     <!-- FontAwesome -->
     <script src="/static/js/fontawesome.all.min.js"></script>
-
+{% block js %}
+{% endblock %}
 </body>
 </html>
